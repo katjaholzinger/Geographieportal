@@ -1,0 +1,25 @@
+Einbindung Quiz-Framework: Multiple Choice etc.
+http://www.felix-riesterer.de/main/seiten/quiz-script.html
+
+Einbindung Leaflet.js: (Topographie Quiz und für Kartendarstellungen)
+
+Farbpalette:
+- schwarz: #1E122B
+- dunkel blau: #2F4082
+- mittel blau: #4898C6
+- hell blau: #A6D9E5
+- weiß: #FFFFFF
+
+
+ <p>
+                Aus welchen zwei Städten ist Berlin entstanden? (Berlin) (!Spandau) (!Köpenick) (!Köln) (Cölln)
+            </p>
+            <p>
+                Durch wen wurde der Plan zur Bebauung Berlins um 1900 entwickelt? (James Hobrecht) (!König Friedrich) (!Karl Friedrich Schinkel) (!Friedrich Stüler)
+            </p>
+            <p>
+                Was waren zentrale Elemente des Bebauungsplans? (!Ring Bahn) (Sternförmige Plätze) (100m x 100m Baublöcke) (!Traufhöhe) (freie Baublöcke) (!Hinterhofbebauung)
+            </p>
+            <p>
+                In welchem Bereich wurde der Plan umgesetzt? (!4 Jahre) (!10 Jahre) (!20 Jahre) (30 Jahre) (!9 Monate)
+            </p>

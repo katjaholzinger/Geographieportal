@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="de" ng-app="berlinTest">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Berlin - Geographieportal</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/menu.css">
+    <link rel="stylesheet" href="../style/quiz.css">
+    <link rel="stylesheet" href="../quizlib/quizlib.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+    <script language="javascript" type="text/javascript" src="../script/menu.js"></script>
+    <script src="../quizlib/quizlib.js"></script>
+    <script src="../script/berlinTestApp.js"></script>
+
+</head>
+
+<body>
+    <div id="header" class="">
+        <!--Header-->
+        <a href="index.html"><img src="../image/geographie-symbol.gif" id="header-image"></a>
+        <div class="menu-button" onclick="ToggleClick(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <div id="menu" class="">
+            <ul class="topnav" id="myTopnav">
+
+                <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Startseite</a></li>
+                <li onclick="MenuClick(this)" class="subnavigation"><a href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Wissen</a>
+                    <ul>
+                        <h3>Wissens Kategorien</h3>
+                        <a href="wissen_deutschland.html">
+                            <li>Deutschland - Topografie</li>
+                        </a>
+                        <a href="wissen_europa.html">
+                            <li>Hauptstädte Europa</li>
+                        </a>
+                        <a href="wissen_berlin.html">
+                            <li>Berliner Stadtentwicklung</li>
+                        </a>
+                        <a href="#">
+                            <li class="all">Alle Kategorien anzeigen</li>
+                        </a>
+                    </ul>
+                </li>
+                <li onclick="MenuClick(this)" class="subnavigation active"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Tests</a>
+
+                    <ul>
+                        <h3>Test Kategorien</h3>
+                        <a href="test_deutschland.html">
+                            <li>Deutschland - Topografie</li>
+                        </a>
+                        <a href="test_europa.html">
+                            <li>Hauptstädte Europa</li>
+                        </a>
+                        <a href="test_berlin.html">
+                            <li>Berliner Stadtentwicklung</li>
+                        </a>
+                        <a href="#">
+                            <li class="all">Alle Kategorien anzeigen</li>
+                        </a>
+                    </ul>
+                </li>
+                <li><a href="impressum.html"><i class="fa fa-align-justify" aria-hidden="true"></i> Impressum</a></li>
+
+            </ul>
+
+        </div>
+    </div>
+    <div id="content" ng-controller="mainCtrl">
+        <H2>Berliner Stadtentwicklungsquiz</H2>
+        <p>
+            Auf der folgenden Seite sind verschiedene Fragen zur Stadtentwicklung von Berlin zu bearbeiten. Dabei ist nicht immer nur eine Antwortmöglichkeit richtig.
+        </p>
+        <div class="w3-row">
+            <!-- Quiz Container -->
+            <div class="w3-col l6">
+                <div id="quiz" class="quiz quiz-left">
+                    <div id="quiz-result" class="card">
+                        Fragen
+                    </div>
+                    <!-- Questions load per Angular -->
+                    <div class="question quizlib-question" ng-repeat="question in questions">
+                        <div class="w3-row">
+                            <div class="quizlib-question-title w3-col s11">{{question.text}} </div>
+                            <div class="w3-col s1 w3-right-align">
+                                <button ng-click="editQuestion(question._id)" class="squaredFaButton" href="#/edit"><i class="fa fa-pencil"></i></button>
+                                <button ng-click="deleteQuestion(question._id)" class="squaredFaButton"><i class="fa fa-times"></i></button>
+                            </div>
+                        </div>
+                        <div class="quizlib-question-answers">
+                            <ul>
+                                <li ng-repeat="answer in answers | filter: {fragenId : question._id}"><label><input type="checkbox" name="{{answer.fragenId}}" value="{{answer._id}}"> {{answer.text}}</label></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Answer Button -->
+                    <div ng-click="checkAnswers()" class="card button-bottom">
+                        Überprüfen
+                    </div>
+                </div>
+            </div>
+            <div class="w3-col l6" ng-view>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

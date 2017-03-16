@@ -1,0 +1,24 @@
+<div class="quiz quiz-right">
+
+    <div class="card">
+        Fragen Formular
+    </div>
+    <p>In diesem Formular kann die Frage bearbeitet werden.
+    </p>
+    <form>
+        <input type="text" ng-model="QuestionEdit.text" name="" placeholder="Frage" class="newQuestion">
+        <div data-ng-repeat="answer in AnswersEdit">
+            <div class="w3-row">
+                <div class="w3-col s1 w3-center"> <input type="checkbox" ng-model="answer.bool" class="bool"></div>
+                <div class="w3-col s10"><input type="text" ng-model="answer.text" class="answerText" placeholder="Antwort"></div>
+                <div class="w3-col s1 w3-right-align">
+                    <button class="add squaredFaButton" ng-show="$last" ng-click="EditaddAnswer()"><i class="fa fa-plus"></i></button>
+                    <button ng-click="deleteAnswer(answer._id)" class="squaredFaButton"><i class="fa fa-times"></i></button></div>
+            </div>
+        </div>
+    </form>
+    <div ng-click="updateQuestion(QuestionEdit._id)" class="card button-bottom">
+        Bearbeitete Frage abschicken
+    </div>
+
+</div>

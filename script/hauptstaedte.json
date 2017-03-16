@@ -1,0 +1,387 @@
+[{
+        "name": "Budapest",
+        "land": "Ungarn",
+        "koordinaten": {
+            "x": "+47.4984",
+            "y": "+19.0408"
+        }
+
+    },
+    {
+        "name": "Tirane / Tirana",
+        "land": "Albanien",
+        "koordinaten": {
+            "x": "+41.3317 ",
+            "y": "+19.8172"
+        }
+
+
+    },
+    {
+        "name": "Andorra la Vella",
+        "land": "Andorra",
+        "koordinaten": {
+            "x": "+42.5075",
+            "y": "+1.5218"
+        }
+    }, {
+        "name": "Minsk",
+        "land": "Belarus / Weißrussland",
+        "koordinaten": {
+            "x": "+53.9678",
+            "y": "+27.5766"
+        }
+
+    },
+    {
+        "name": "Bruxelles / Brüssel",
+        "land": "Belgien",
+        "koordinaten": {
+            "x": "+50.8371",
+            "y": "+4.3676"
+        }
+
+    },
+    {
+        "name": "Sarajevo",
+        "land": "Bosnien-Herzegowina",
+        "koordinaten": {
+            "x": "+43.8608",
+            "y": "+18.4214"
+        }
+
+    },
+    {
+        "name": "Sofiya / Sofia",
+        "land": "Bulgarien",
+        "koordinaten": {
+            "x": "+42.7105",
+            "y": "+23.3238"
+        }
+
+    },
+    {
+        "name": "Kobenhavn / Kopenhagen",
+        "land": "Dänemark",
+        "koordinaten": {
+            "x": "+55.6763 ",
+            "y": "+12.5681"
+        }
+
+    },
+    {
+        "name": "Berlin",
+        "land": "Deutschland",
+        "koordinaten": {
+            "x": "+52.5235",
+            "y": "+13.4115"
+        }
+
+    },
+    {
+        "name": "Tallin",
+        "land": "Estland",
+        "koordinaten": {
+            "x": "+59.4389",
+            "y": "+24.7545"
+        }
+
+    },
+    {
+        "name": "Helsinki",
+        "land": "Finnland",
+        "koordinaten": {
+            "x": "+60.1699",
+            "y": "+24.9384"
+        }
+
+    },
+    {
+        "name": "Paris",
+        "land": "Frankreich",
+        "koordinaten": {
+            "x": "+48.8567",
+            "y": "+2.3510"
+        }
+
+    },
+    {
+        "name": "Athinai / Athen",
+        "land": "Griechenland",
+        "koordinaten": {
+            "x": "+37.9792",
+            "y": "+23.7166"
+        }
+
+    },
+    {
+        "name": "London",
+        "land": "Großbritannien",
+        "koordinaten": {
+            "x": "+51.5002",
+            "y": "-0.1262"
+        }
+
+    },
+    {
+        "name": "Dublin",
+        "land": "Irland",
+        "koordinaten": {
+            "x": "+53.3441",
+            "y": "-6.2675"
+        }
+
+    },
+    {
+        "name": "Reykjavik",
+        "land": "Island",
+        "koordinaten": {
+            "x": "+64.1353",
+            "y": "-21.8952"
+        }
+
+    },
+    {
+        "name": "Roma / Rom",
+        "land": "Italien",
+        "koordinaten": {
+            "x": "+41.8955",
+            "y": "+12.4823"
+        }
+
+    },
+    {
+        "name": "Zagreb",
+        "land": "Kroatien",
+        "koordinaten": {
+            "x": "+45.8150",
+            "y": "+15.9785"
+        }
+
+    },
+    {
+        "name": "Riga",
+        "land": "Lettland",
+        "koordinaten": {
+            "x": "+56.9465",
+            "y": "+24.1049"
+        }
+
+    },
+    {
+        "name": "Vaduz",
+        "land": "Liechtenstein",
+        "koordinaten": {
+            "x": "+47.1411",
+            "y": "+9.5215"
+        }
+
+    },
+    {
+        "name": "Vilnius",
+        "land": "Litauen",
+        "koordinaten": {
+            "x": "+54.6896",
+            "y": "+25.2799"
+        }
+
+    },
+    {
+        "name": "Luxembourg / Luxemburg",
+        "land": "Luxemburg",
+        "koordinaten": {
+            "x": "+49.6100",
+            "y": "+6.1296"
+        }
+
+    },
+    {
+        "name": "Valletta",
+        "land": "Malta",
+        "koordinaten": {
+            "x": "+35.9042",
+            "y": "+14.5189"
+        }
+
+    },
+    {
+        "name": "Skopje",
+        "land": "Mazedonien",
+        "koordinaten": {
+            "x": "+42.0024",
+            "y": "+21.4361"
+        }
+
+    },
+    {
+        "name": "Chisinau",
+        "land": "Moldau / Moldawien",
+        "koordinaten": {
+            "x": "+47.0167",
+            "y": "+28.8497"
+        }
+
+    },
+    {
+        "name": "Monaco",
+        "land": "Monaco",
+        "koordinaten": {
+            "x": "+43.7325",
+            "y": "+7.4189"
+        }
+
+    },
+    {
+        "name": "Podgorica",
+        "land": "Montenegro",
+        "koordinaten": {
+            "x": "+42.4602",
+            "y": "+19.2595"
+        }
+
+    },
+    {
+        "name": "Amsterdam",
+        "land": "Niederlande",
+        "koordinaten": {
+            "x": "+52.3738",
+            "y": "+4.8910"
+        }
+
+    },
+    {
+        "name": "Oslo",
+        "land": "Norwegen",
+        "koordinaten": {
+            "x": "+59.9138",
+            "y": "+10.7387"
+        }
+
+    },
+    {
+        "name": "Vienna / Wien",
+        "land": "Österreich",
+        "koordinaten": {
+            "x": "+48.2092",
+            "y": "+16.3728"
+        }
+
+    },
+    {
+        "name": "Warszawa / Warschau",
+        "land": "Polen",
+        "koordinaten": {
+            "x": "+52.2297",
+            "y": "+21.0122"
+        }
+
+    },
+    {
+        "name": "Lisboa / Lissabon",
+        "land": "Portugal",
+        "koordinaten": {
+            "x": "+38.7072",
+            "y": " -9.1355"
+        }
+
+    },
+    {
+        "name": "Bucuresti / Bukarest",
+        "land": "Rumänien",
+        "koordinaten": {
+            "x": "+44.4479",
+            "y": "+26.0979"
+        }
+
+    },
+    {
+        "name": "Moskva / Moskau",
+        "land": "Russland",
+        "koordinaten": {
+            "x": "+55.7558",
+            "y": "+37.6176"
+        }
+
+    },
+    {
+        "name": "San Marino",
+        "land": "San Marino",
+        "koordinaten": {
+            "x": "+43.9424",
+            "y": "+12.4578"
+        }
+
+    },
+    {
+        "name": "Stockholm",
+        "land": "Schweden",
+        "koordinaten": {
+            "x": "+59.3328",
+            "y": "+18.0645"
+        }
+
+    },
+    {
+        "name": "Bern",
+        "land": "Schweiz",
+        "koordinaten": {
+            "x": "+46.9480",
+            "y": "+7.4481"
+        }
+
+    },
+    {
+        "name": "Beograd / Belgrad",
+        "land": "Serbien",
+        "koordinaten": {
+            "x": "+44.8048",
+            "y": "+20.4781"
+        }
+
+    },
+    {
+        "name": "Bratislava",
+        "land": "Slowakei",
+        "koordinaten": {
+            "x": "+48.2116",
+            "y": "+17.1547"
+        }
+
+    },
+    {
+        "name": "Ljubljana",
+        "land": "Slowenien",
+        "koordinaten": {
+            "x": "+46.0514",
+            "y": "+14.5060"
+        }
+
+    },
+    {
+        "name": "Madrid",
+        "land": "Spanien",
+        "koordinaten": {
+            "x": "+40.4167",
+            "y": "-3.7033"
+        }
+
+    },
+    {
+        "name": "Praha / Prag",
+        "land": "Tschechien",
+        "koordinaten": {
+            "x": "+50.0878",
+            "y": "+14.4205"
+        }
+
+    },
+    {
+        "name": "Kyiv / Kiew",
+        "land": "Ukraine",
+        "koordinaten": {
+            "x": "+50.4422",
+            "y": "+30.5367"
+        }
+
+    }
+]

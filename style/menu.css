@@ -1,0 +1,238 @@
+@media screen and (min-width:691px) {
+    ul.topnav {
+        list-style: none;
+        padding: 0;
+        margin-top: 0;
+        text-transform: uppercase;
+    }
+    ul.topnav h3 {
+        font-size: 16px;
+        color: black;
+        padding: 10px;
+        margin: 0;
+        background: #4898C6;
+        line-height: 20px;
+    }
+    ul.topnav li {
+        float: left;
+        margin: 0 0 0 20px;
+        font-size: 20px;
+        line-height: 50px;
+        padding-top: 20px;
+        border-top: 3px solid white;
+    }
+    ul.topnav li:hover {
+        border-top: 3px solid #4898C6;
+    }
+    ul.topnav li.active {
+        border-top: 3px solid #2F4082;
+    }
+    ul.topnav li a {
+        color: black;
+        text-decoration: none;
+        -webkit-transition: all .5s ease-in-out;
+        -moz-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        -ms-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+    }
+    ul.topnav li a:hover {
+        color: black;
+    }
+    ul.topnav li img {
+        float: left;
+        width: 16px;
+        height: 16px;
+        margin: 14px 5px;
+        padding: 6px;
+        background: #d1d1d1;
+        -webkit-border-radius: 25px;
+        -moz-border-radius: 25px;
+        border-radius: 25px;
+        -webkit-transition: all .5s ease-in-out;
+        -moz-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        -ms-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+    }
+    ul.topnav li:hover img {
+        background: #2F4082;
+    }
+    ul.topnav ul {
+        position: absolute;
+        top: -9999px;
+        background: #fff;
+        padding: 0;
+        margin: 0 0 0 -5px;
+        -webkit-box-shadow: 0 10px 20px #888;
+        -moz-box-shadow: 0 10px 20px #888;
+        box-shadow: 0 10px 20px #888;
+        list-style: none;
+    }
+    ul.topnav ul:before {
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 10px;
+        top: -5px;
+        left: 20px;
+        background: #4898C6;
+        -webkit-transform: rotate(45deg);
+        -moz-transform: rotate(45deg);
+        -o-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+    }
+    ul.topnav li:hover ul {
+        top: 65px;
+    }
+    ul.topnav ul li {
+        float: none;
+        font-size: 16px;
+        padding: 5px 10px;
+        text-align: left;
+        margin: 0;
+        border-bottom: 1px solid #ddd;
+        line-height: 20px;
+        -webkit-transition: all .5s ease-in-out;
+        -moz-transition: all .5s ease-in-out;
+        -o-transition: all .5s ease-in-out;
+        -ms-transition: all .5s ease-in-out;
+        transition: all .5s ease-in-out;
+    }
+    ul.topnav ul a {
+        color: black;
+        text-decoration: none;
+    }
+    ul.topnav ul a {
+        color: black;
+        text-decoration: none;
+    }
+    ul.topnav ul li.all {
+        font-size: 12px;
+        border-bottom: none;
+        text-transform: none;
+    }
+    ul.topnav ul li.all:after {
+        content: " \2192"
+    }
+    ul.topnav ul li:hover {
+        background: #d1d1d1
+    }
+    .menu-button {
+        display: inline-block;
+        cursor: pointer;
+        display: none;
+    }
+}
+
+
+/* Hide the list item that contains the link that should open and close the topnav on small screens */
+
+div.menu-button {
+    display: none;
+}
+
+
+/* When the screen is less than 690 pixels wide, Toggle Menu*/
+
+@media screen and (max-width:690px) {
+    #menu.open-menu {
+        width: 100%;
+    }
+    ul.topnav {
+        list-style: none;
+        text-align: center;
+        padding: 0 10px 0 10px;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+        border-radius: 1em;
+        background: #d1d1d1
+    }
+    ul.topnav li:not(.open-menu) {
+        display: none;
+    }
+    ul.topnav.open-menu li {
+        display: block;
+        float: none;
+    }
+    div.menu-button {
+        float: right;
+        display: inline-block;
+        margin: 1em 0;
+    }
+    ul.topnav h3 {
+        display: none;
+    }
+    ul.topnav li {
+        float: none;
+        margin: 0;
+        font-size: 20px;
+        line-height: 50px;
+    }
+    ul.topnav li a {
+        color: black;
+        text-decoration: none;
+    }
+    ul.topnav li ul {
+        display: none;
+    }
+    ul.topnav li.open ul {
+        display: block;
+        position: relative;
+        top: 0px;
+        padding: 0;
+        list-style: none;
+        padding: 0 10px 0 10px;
+        box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.25);
+        border-radius: 1em;
+        background: #fff;
+    }
+    ul.topnav ul li {
+        display: none;
+        font-size: smaller;
+    }
+    ul.topnav li.subnavigation>a:after {
+        content: " \25BC";
+        content: " \25BC";
+    }
+    ul.topnav ul li.all {
+        border-top: solid;
+        border-width: 0.2;
+    }
+}
+
+
+/*Menübutton*/
+
+.bar1,
+.bar2,
+.bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: black;
+    margin: 6px;
+    transition: 0.4s;
+}
+
+
+/* Rotate first bar */
+
+.change .bar1 {
+    -webkit-transform: rotate(-45deg) translate(-9px, 6px);
+    transform: rotate(-45deg) translate(-9px, 6px);
+}
+
+
+/* Fade out the second bar */
+
+.change .bar2 {
+    opacity: 0;
+}
+
+
+/* Rotate last bar */
+
+.change .bar3 {
+    -webkit-transform: rotate(45deg) translate(-8px, -8px);
+    transform: rotate(45deg) translate(-8px, -8px);
+}

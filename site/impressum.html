@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geographieportal</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../style/style.css">
+    <link rel="stylesheet" href="../style/menu.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
+
+    <script language="javascript" type="text/javascript" src="../script/menu.js"></script>
+</head>
+
+<body>
+    <div id="header" class="">
+        <!--Header-->
+        <a href="index.html"><img src="../image/geographie-symbol.gif" id="header-image"></a>
+        <div class="menu-button" onclick="ToggleClick(this)">
+            <div class="bar1"></div>
+            <div class="bar2"></div>
+            <div class="bar3"></div>
+        </div>
+        <div id="menu" class="">
+            <ul class="topnav" id="myTopnav">
+
+                <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Startseite</a></li>
+                <li onclick="MenuClick(this)" class="subnavigation"><a href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Wissen</a>
+                    <ul>
+                        <h3>Wissens Kategorien</h3>
+                        <a href="wissen_deutschland.html">
+                            <li>Deutschland - Topografie</li>
+                        </a>
+                        <a href="wissen_europa.html">
+                            <li>Hauptstädte Europa</li>
+                        </a>
+                        <a href="wissen_berlin.html">
+                            <li>Berliner Stadtentwicklung</li>
+                        </a>
+                        <a href="#">
+                            <li class="all">Alle Kategorien anzeigen</li>
+                        </a>
+                    </ul>
+                </li>
+                <li onclick="MenuClick(this)" class="subnavigation"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Tests</a>
+
+                    <ul>
+                        <h3>Test Kategorien</h3>
+                        <a href="test_deutschland.html">
+                            <li>Deutschland - Topografie</li>
+                        </a>
+                        <a href="test_europa.html">
+                            <li>Hauptstädte Europa</li>
+                        </a>
+                        <a href="test_berlin.html">
+                            <li>Berliner Stadtentwicklung</li>
+                        </a>
+                        <a href="#">
+                            <li class="all">Alle Kategorien anzeigen</li>
+                        </a>
+                    </ul>
+                </li>
+                <li class="active"><a href="impressum.html"><i class="fa fa-align-justify" aria-hidden="true"></i> Impressum</a></li>
+
+            </ul>
+
+        </div>
+    </div>
+    <div id="content">
+
+        <!--Inhalt-->
+        <p><b>Impressum:</b></p>
+
+    </div>
+
+</body>
+
+</html>
