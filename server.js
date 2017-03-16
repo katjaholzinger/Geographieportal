@@ -325,3 +325,79 @@ app.delete('/api/answer_delete_dtschl/:_id', function(req, res) {
         });
     });
 });
+
+// update a answer
+app.post('/api/answer_update_dtschl', function(req, res) {
+    AnswerDtschl.findOne({ _id: req.body._id }, function(err, answer) {
+        console.log(answer);
+        if (answer === null) {
+            // create a answer, information comes from AJAX request from Angular
+            AnswerDtschl.create({
+                //boolean und FragenIDmuss extraiert werden aus dem Body
+                text: req.body.text,
+                fragenId: req.body.fragenID,
+                bool: req.body.bool
+            }, function(err, answer) {
+                if (err)
+                    res.send(err);
+
+                // get and return all the answers after you create another
+                AnswerDtschl.find(function(err, answers) {
+                    if (err)
+                        res.send(err)
+                    res.json(answers);
+                });
+            })
+        } else {
+            AnswerDtschl.update({ _id: req.body._id }, {
+                text: req.body.text,
+                bool: req.body.bool
+            }, function(err, answer) {
+                if (err)
+                    res.send(err);
+
+                // get and return all the answers after you create another
+                AnswerDtschl.find(function(err, answers) {
+                    if (err)
+                        res.send(err)
+                    res.json(answers);
+                });
+            });
+        }
+    })
+});
+
+// delete a answer
+app.delete('/api/answer_delete_dtschl/:_id', function(req, res) {
+    AnswerDtschl.remove({
+        _id: req.params._id
+    }, function(err, answer) {
+        if (err)
+            res.send(err);
+
+        // get and return all the answers after you create another
+        AnswerDtschl.find(function(err, answers) {
+            if (err)
+                res.send(err)
+            res.json(answers);
+        });
+    });
+});
+
+// update a question
+app.post('/api/question_update_dtschl', function(req, res) {
+    console.log(req);
+    QuestionDtschl.update({ _id: req.body._id }, {
+        text: req.body.text
+    }, function(err, question) {
+        if (err)
+            res.send(err);
+
+        // get and return all the answers after you create another
+        QuestionDtschl.find(function(err, questions) {
+            if (err)
+                res.send(err)
+            res.json(questions);
+        });
+    });
+});

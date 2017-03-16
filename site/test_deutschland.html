@@ -16,6 +16,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
     <script language="javascript" type="text/javascript" src="../script/menu.js"></script>
     <script src="../quizlib/quizlib.js"></script>
     <script src="../script/deutschlandTestApp.js"></script>
@@ -91,7 +92,10 @@
                     <div class="question quizlib-question" ng-repeat="question in questions">
                         <div class="w3-row">
                             <div class="quizlib-question-title w3-col s11">{{question.text}} </div>
-                            <div class="w3-col s1 w3-right-align"><button ng-click="deleteQuestion(question._id)" class="squaredFaButton"><i class="fa fa-times"></i></button></div>
+                            <div class="w3-col s1 w3-right-align">
+                                <button ng-click="editQuestion(question._id)" class="squaredFaButton" href="#/edit"><i class="fa fa-pencil"></i></button>
+                                <button ng-click="deleteQuestion(question._id)" class="squaredFaButton"><i class="fa fa-times"></i></button>
+                            </div>
                         </div>
                         <div class="quizlib-question-answers">
                             <ul>
@@ -106,29 +110,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w3-col l6">
-                <div class="quiz quiz-right">
-
-                    <div class="card">
-                        Fragen Formular
-                    </div>
-                    <p>In diesem Formular kann eine weitere Frage mit beliebig vielen Antworten hinzugefügt werden. Richtige Antworten werden mit einem Haken makiert.
-                    </p>
-                    <form>
-                        <input type="text" ng-model="formData.newQuestion.text" name="" placeholder="Frage" class="newQuestion">
-                        <div data-ng-repeat="answer in formData.newAnswers">
-                            <div class="w3-row">
-                                <div class="w3-col s1 w3-center"> <input type="checkbox" ng-model="answer.bool" class="bool"></div>
-                                <div class="w3-col s10"><input type="text" ng-model="answer.text" class="answerText" placeholder="Antwort"></div>
-                                <div class="w3-col s1 w3-center"><button class="add squaredFaButton" ng-show="$last" ng-click="addAnswer()"><i class="fa fa-plus"></i></button></div>
-                            </div>
-                        </div>
-                    </form>
-                    <div ng-click="createQuestion()" class="card button-bottom">
-                        Frage abschicken
-                    </div>
-
-                </div>
+            <div class="w3-col l6" ng-view>
             </div>
         </div>
     </div>
