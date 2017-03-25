@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de" ng-app="berlinTest">
+<html lang="de" ng-app="shellTest">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Berlin - Geographieportal</title>
+    <title>Shell Test - Geographieportal</title>
 
     <link rel="shortcut icon" href="../image/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
@@ -17,10 +17,19 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.6/angular-sanitize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+
+    <!-- Fürs Offline arbeiten -->
+    <script src="../script/source/angular.min.js"></script>
+    <script src="../script/source/angular-route.min.js"></script>
+    <script src="../script//source/angular-sanitize.min.js"></script>
+
     <script language="javascript" type="text/javascript" src="../script/menu.js"></script>
     <script src="../quizlib/quizlib.js"></script>
-    <script src="../script/berlinTestApp.js"></script>
+    <script src="../script/services.js"></script>
+    <script src="../script/shellTestApp.js"></script>
+
 
 </head>
 
@@ -79,10 +88,7 @@
         </div>
     </div>
     <div id="content" ng-controller="mainCtrl">
-        <H2>Berliner Stadtentwicklungsquiz</H2>
-        <p>
-            Auf der folgenden Seite sind verschiedene Fragen zur Stadtentwicklung von Berlin zu bearbeiten. Dabei ist nicht immer nur eine Antwortmöglichkeit richtig.
-        </p>
+        <H2>Shell Test</H2>
         <div class="w3-row">
             <!-- Quiz Container -->
             <div class="w3-col l6">
@@ -93,7 +99,7 @@
                     <!-- Questions load per Angular -->
                     <div class="question quizlib-question" ng-repeat="question in questions">
                         <div class="w3-row">
-                            <div class="quizlib-question-title w3-col s11">{{question.text}} </div>
+                            <div class="quizlib-question-title w3-col s11" ng-bind-html="question.text">{{question.text}} </div>
                             <div class="w3-col s1 w3-right-align">
                                 <button ng-click="editQuestion(question._id)" class="squaredFaButton" href="#/edit"><i class="fa fa-pencil"></i></button>
                                 <button ng-click="deleteQuestion(question._id)" class="squaredFaButton"><i class="fa fa-times"></i></button>

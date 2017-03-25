@@ -53,7 +53,7 @@ function onClick(e) {
             $('#trial').text(trial);
             string += '<br>' + hauptstaedte[items[active - 1]].name + ' ist die Hauptstadt von ' + hauptstaedte[items[active - 1]].land + '.';
             string += '<br> Die 10 Städte wurden mit <b>' + trial + ' </b> Versuchen gefunden.';
-            string += '<br> Versuch es doch nochmal durch neuladen der Seite.'; //<-stattdessen einen button der nur die Seite neu lädt
+            string += '<br> <a href="test_europa.html">Neustarten</a>'; //<-stattdessen einen button der nur die Seite neu lädt
             window.alert('Die 10 Städte wurden mit ' + trial + ' Versuchen gefunden.')
             $('#quizResult').text("Beendet");
         }

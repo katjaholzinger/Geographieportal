@@ -37,6 +37,15 @@ var AnswerDtschl = mongoose.model('AnswerDtschl', {
     bool: Boolean
 });
 
+var ShellQuestion = mongoose.model('ShellQuestion', {
+    text: String
+});
+var ShellAnswer = mongoose.model('ShellAnswer', {
+    text: String,
+    fragenId: String,
+    bool: Boolean
+});
+
 // listen (start app with node server.js) ======================================
 app.listen(8765);
 console.log("App listening on port 8765");
@@ -400,4 +409,176 @@ app.post('/api/question_update_dtschl', function(req, res) {
             res.json(questions);
         });
     });
+});
+
+//---- ShellQuiz
+
+// get all ShellQuestions
+app.get('/api/Shellquestions', function(req, res) {
+
+    // get and return all the Shellquestions after you create another
+    ShellQuestion.find(function(err, Shellquestions) {
+        if (err)
+            res.send(err)
+        res.json(Shellquestions);
+    });
+});
+
+// get ShellQuestion by Text
+app.get('/api/Shellquestion/:text', function(req, res) {
+
+    // get and return all the Shellquestions after you create another
+    ShellQuestion.findOne({ text: req.params.text }, function(err, Shellquestions) {
+        if (err)
+            res.send(err)
+        res.json(Shellquestions);
+    }).sort({ _id: -1 });
+});
+
+// create Shellquestion and send back all Shellquestions after creation
+app.post('/api/Shellquestion', function(req, res) {
+
+    // create a Shellquestion, information comes from AJAX request from Angular
+    ShellQuestion.create({
+        text: req.body.text
+    }, function(err, Shellquestion) {
+        if (err)
+            res.send(err);
+
+        // get and return all the Shellquestions after you create another
+        ShellQuestion.find(function(err, Shellquestions) {
+            if (err)
+                res.send(err)
+            res.json(Shellquestions);
+        });
+    });
+
+});
+
+// delete a Shellquestion
+app.delete('/api/Shellquestion_delete/:_id', function(req, res) {
+    ShellQuestion.remove({
+        _id: req.params._id
+    }, function(err, Shellquestion) {
+        if (err)
+            res.send(err);
+
+        // get and return all the Shellquestions after you create another
+        ShellQuestion.find(function(err, Shellquestions) {
+            if (err)
+                res.send(err)
+            res.json(Shellquestions);
+        });
+    });
+});
+
+
+// get all ShellAnswers
+app.get('/api/Shellanswers', function(req, res) {
+
+    // get and return all the Shellanswers
+    ShellAnswer.find(function(err, Shellanswers) {
+        if (err)
+            res.send(err)
+        res.json(Shellanswers);
+    });
+});
+
+// create Shellanswer and send back all Shellquestions after creation
+app.post('/api/Shellanswer', function(req, res) {
+    // create a Shellanswer, information comes from AJAX request from Angular
+    ShellAnswer.create({
+        //boolean und FragenIDmuss extraiert werden aus dem Body
+        text: req.body.text,
+        fragenId: req.body.fragenId,
+        bool: req.body.bool
+    }, function(err, Shellanswer) {
+        if (err)
+            res.send(err);
+
+        // get and return all the Shellanswers after you create another
+        ShellAnswer.find(function(err, Shellanswers) {
+            if (err)
+                res.send(err)
+            res.json(Shellanswers);
+        });
+    });
+
+});
+
+// delete a Shellanswer
+app.delete('/api/Shellanswer_delete/:_id', function(req, res) {
+    ShellAnswer.remove({
+        _id: req.params._id
+    }, function(err, Shellanswer) {
+        if (err)
+            res.send(err);
+
+        // get and return all the Shellanswers after you create another
+        ShellAnswer.find(function(err, Shellanswers) {
+            if (err)
+                res.send(err)
+            res.json(Shellanswers);
+        });
+    });
+});
+
+// update a Shellquestion
+app.post('/api/Shellquestion_update', function(req, res) {
+    console.log(req);
+    ShellQuestion.update({ _id: req.body._id }, {
+        text: req.body.text
+    }, function(err, Shellquestion) {
+        if (err)
+            res.send(err);
+
+        // get and return all the Shellanswers after you create another
+        ShellQuestion.find(function(err, Shellquestions) {
+            if (err)
+                res.send(err)
+            res.json(Shellquestions);
+        });
+    });
+});
+
+// update a Shellanswer
+app.post('/api/Shellanswer_update', function(req, res) {
+    ShellAnswer.findOne({ _id: req.body._id }, function(err, Shellanswer) {
+        console.log(Shellanswer);
+        if (Shellanswer === null) {
+            // create a Shellanswer, information comes from AJAX request from Angular
+            ShellAnswer.create({
+                //boolean und FragenIDmuss extraiert werden aus dem Body
+                text: req.body.text,
+                fragenId: req.body.fragenID,
+                bool: req.body.bool
+            }, function(err, Shellanswer) {
+                if (err)
+                    res.send(err);
+
+                // get and return all the Shellanswers after you create another
+                ShellAnswer.find(function(err, Shellanswers) {
+                    if (err)
+                        res.send(err)
+                    res.json(Shellanswers);
+                });
+            })
+        } else {
+            ShellAnswer.update({ _id: req.body._id }, {
+                text: req.body.text,
+                bool: req.body.bool
+            }, function(err, Shellanswer) {
+                if (err)
+                    res.send(err);
+
+                // get and return all the Shellanswers after you create another
+                ShellAnswer.find(function(err, Shellanswers) {
+                    if (err)
+                        res.send(err)
+                    res.json(Shellanswers);
+                });
+            });
+        }
+    });
+
 });

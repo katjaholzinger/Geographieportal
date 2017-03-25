@@ -37,6 +37,11 @@ img {
     margin: 30px 1em;
 }
 
+#map {
+    width: 100%;
+    height: 600px;
+}
+
 @media screen and (min-width:1360px) {
     #content {
         margin: 30px auto;

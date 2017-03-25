@@ -1,17 +1,32 @@
-angular.module('berlinTest', ['ngRoute'])
+angular.module('shellTest', ['ngRoute', 'ngSanitize'])
 
 .controller('mainCtrl', function($scope, $http, $location) {
         $scope.formData = {};
-
+        $scope.questions = [];
         // when landing on the page, get all questions and show them
-        $http.get('/api/questions')
+        $http.get('/api/Shellquestions')
             .success(function(data) {
-                $scope.questions = data;
+                $scope.questions = [];
+                $scope.allquestions = data;
+                var min = 0;
+                var max = data.length;
+
+                // Select 10 Random Citys
+                for (i = 0; i < 7; i++) {
+                    var x = Math.floor(Math.random() * (max - min)) + min;
+                    if ($scope.allquestions[x] == undefined) {
+                        i--
+                    } else {
+                        $scope.questions.push($scope.allquestions[x]);
+                        delete $scope.allquestions[x];
+                    }
+                }
+                console.log($scope.questions.length)
             })
             .error(function(data) {
                 console.log('Error: ' + data);
             });
-        $http.get('/api/answers')
+        $http.get('/api/Shellanswers')
             .success(function(data) {
                 $scope.answers = data;
             })
@@ -24,7 +39,7 @@ angular.module('berlinTest', ['ngRoute'])
             if ($scope.formData.newQuestion) {
 
 
-                $http.post('/api/question', $scope.formData.newQuestion)
+                $http.post('/api/Shellquestion', $scope.formData.newQuestion)
                     .success(function(data) {
                         $scope.questions = data;
                     })
@@ -32,7 +47,7 @@ angular.module('berlinTest', ['ngRoute'])
                         console.log('Error: ' + data);
                     });
                 var newQuestionId = "";
-                $http.get('/api/question/' + encodeURIComponent($scope.formData.newQuestion.text))
+                $http.get('/api/Shellquestion/' + encodeURIComponent($scope.formData.newQuestion.text))
                     .success(function(data) {
                         var newQuestionId = data._id;
                         angular.forEach($scope.formData.newAnswers, function(value) {
@@ -41,7 +56,7 @@ angular.module('berlinTest', ['ngRoute'])
                                 answer.text = value.text;
                                 if (value.bool) { answer.bool = value.bool; } else { answer.bool = false; }
                                 answer.fragenId = newQuestionId;
-                                $http.post('/api/answer', answer)
+                                $http.post('/api/Shellanswer', answer)
                                     .success(function(data) {
                                         $scope.formData = {}; // clear the form so our user is ready to enter another
                                         $scope.formData.newAnswers = [{ id: 'a1' }, { id: 'a2' }];
@@ -64,12 +79,12 @@ angular.module('berlinTest', ['ngRoute'])
 
         // delete a Question
         $scope.deleteQuestion = function(id) {
-            $http.delete('/api/question_delete/' + id)
+            $http.delete('/api/Shellquestion_delete/' + id)
                 .success(function(data) {
                     //Antworten raussuchen mit selber fragenID
                     $scope.answers.forEach(function(answer) {
                         if (answer.fragenId == id) {
-                            $http.delete('/api/answer_delete/' + answer._id)
+                            $http.delete('/api/Shellanswer_delete/' + answer._id)
                                 .success(function(data) {
                                     $scope.answers = data;
                                 })
@@ -87,7 +102,7 @@ angular.module('berlinTest', ['ngRoute'])
 
         // delete a Answer
         $scope.deleteAnswer = function(id) {
-            $http.delete('/api/answer_delete/' + id)
+            $http.delete('/api/Shellanswer_delete/' + id)
                 .success(function(data) {
                     $scope.answers = data;
                 })
@@ -106,12 +121,12 @@ angular.module('berlinTest', ['ngRoute'])
 
         // update a Question
         $scope.updateQuestion = function() {
-            $http.post('/api/question_update', $scope.QuestionEdit)
+            $http.post('/api/Shellquestion_update', $scope.QuestionEdit)
                 .success(function(data) {
                     //Antworten raussuchen mit selber fragenID
                     $scope.AnswersEdit.forEach(function(answer) {
                         answer.fragenID = $scope.QuestionEdit._id;
-                        $http.post('/api/answer_update', answer)
+                        $http.post('/api/Shellanswer_update', answer)
                             .success(function(data) {
                                 $scope.answers = data;
                             })
@@ -119,7 +134,6 @@ angular.module('berlinTest', ['ngRoute'])
                                 console.log('Error: ' + data);
                             });
                     })
-                    $scope.questions = data;
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
