@@ -1,31 +1,29 @@
-angular.module('shellTest', ['ngRoute', 'ngSanitize'])
+angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
 
-.controller('mainCtrl', function($scope, $http, $location) {
+.controller('mainCtrl', function($scope, $http, $location, QuizLogic) {
+
+        activeUrl = $location.absUrl().slice(($location.absUrl().search('site/') + 5));
+        if (activeUrl == "test_berlin.html") {
+            url = QuizLogic.url(0);
+        } else {
+            if (activeUrl == "shell.html") {
+                url = QuizLogic.url(2);
+            } else {
+                url = QuizLogic.url(1);
+            }
+        }
         $scope.formData = {};
-        $scope.questions = [];
-        // when landing on the page, get all questions and show them
-        $http.get('/api/Shellquestions')
-            .success(function(data) {
-                $scope.questions = [];
-                $scope.allquestions = data;
-                var min = 0;
-                var max = data.length;
 
-                // Select 10 Random Citys
-                for (i = 0; i < 7; i++) {
-                    var x = Math.floor(Math.random() * (max - min)) + min;
-                    if ($scope.allquestions[x] == undefined) {
-                        i--
-                    } else {
-                        $scope.questions.push($scope.allquestions[x]);
-                        delete $scope.allquestions[x];
-                    }
-                }
+        // when landing on the page, get all questions and show them
+        $http.get(url.questions)
+            .success(function(data) {
+                //Select Questions
+                $scope.questions = QuizLogic.selectQuestions(data);
             })
             .error(function(data) {
                 console.log('Error: ' + data);
             });
-        $http.get('/api/Shellanswers')
+        $http.get(url.answers)
             .success(function(data) {
                 $scope.answers = data;
             })
@@ -38,7 +36,7 @@ angular.module('shellTest', ['ngRoute', 'ngSanitize'])
             if ($scope.formData.newQuestion) {
 
 
-                $http.post('/api/Shellquestion', $scope.formData.newQuestion)
+                $http.post(url.questionPost, $scope.formData.newQuestion)
                     .success(function(data) {
                         $scope.questions = data;
                     })
@@ -46,7 +44,7 @@ angular.module('shellTest', ['ngRoute', 'ngSanitize'])
                         console.log('Error: ' + data);
                     });
                 var newQuestionId = "";
-                $http.get('/api/Shellquestion/' + encodeURIComponent($scope.formData.newQuestion.text))
+                $http.get(url.questionGet + encodeURIComponent($scope.formData.newQuestion.text))
                     .success(function(data) {
                         var newQuestionId = data._id;
                         angular.forEach($scope.formData.newAnswers, function(value) {
@@ -55,7 +53,7 @@ angular.module('shellTest', ['ngRoute', 'ngSanitize'])
                                 answer.text = value.text;
                                 if (value.bool) { answer.bool = value.bool; } else { answer.bool = false; }
                                 answer.fragenId = newQuestionId;
-                                $http.post('/api/Shellanswer', answer)
+                                $http.post(url.answerPost, answer)
                                     .success(function(data) {
                                         $scope.formData = {}; // clear the form so our user is ready to enter another
                                         $scope.formData.newAnswers = [{ id: 'a1' }, { id: 'a2' }];
@@ -78,12 +76,12 @@ angular.module('shellTest', ['ngRoute', 'ngSanitize'])
 
         // delete a Question
         $scope.deleteQuestion = function(id) {
-            $http.delete('/api/Shellquestion_delete/' + id)
+            $http.delete(url.questionDelete + id)
                 .success(function(data) {
                     //Antworten raussuchen mit selber fragenID
                     $scope.answers.forEach(function(answer) {
                         if (answer.fragenId == id) {
-                            $http.delete('/api/Shellanswer_delete/' + answer._id)
+                            $http.delete(url.answerDelete + answer._id)
                                 .success(function(data) {
                                     $scope.answers = data;
                                 })
@@ -101,7 +99,7 @@ angular.module('shellTest', ['ngRoute', 'ngSanitize'])
 
         // delete a Answer
         $scope.deleteAnswer = function(id) {
-            $http.delete('/api/Shellanswer_delete/' + id)
+            $http.delete(url.answerDelete + id)
                 .success(function(data) {
                     $scope.answers = data;
                 })
@@ -120,12 +118,12 @@ angular.module('shellTest', ['ngRoute', 'ngSanitize'])
 
         // update a Question
         $scope.updateQuestion = function() {
-            $http.post('/api/Shellquestion_update', $scope.QuestionEdit)
+            $http.post(url.questionUpdate, $scope.QuestionEdit)
                 .success(function(data) {
                     //Antworten raussuchen mit selber fragenID
                     $scope.AnswersEdit.forEach(function(answer) {
                         answer.fragenID = $scope.QuestionEdit._id;
-                        $http.post('/api/Shellanswer_update', answer)
+                        $http.post(url.answerUpdate, answer)
                             .success(function(data) {
                                 $scope.answers = data;
                             })
@@ -133,6 +131,7 @@ angular.module('shellTest', ['ngRoute', 'ngSanitize'])
                                 console.log('Error: ' + data);
                             });
                     })
+                    $scope.questions = data;
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);
@@ -170,54 +169,9 @@ angular.module('shellTest', ['ngRoute', 'ngSanitize'])
 
         //Quiz Handler
         $scope.checkAnswers = function() {
-            //Die Antworten müssen durchlaufen werden, für jede Frage wird ein Array der richtigen Antworten (ID) (antworten.bool ==1 )zurückgegeben
-            var boolArray = [];
-            //scope.questions und scope.answers müssen durchlaufen werden
-            $scope.questions.forEach(function(question) {
-                var activequestion = question
-                var arrayright = [];
-                $scope.answers.forEach(function(answer) {
-                    if (answer.fragenId == activequestion._id) {
-                        if (answer.bool) {
-                            arrayright.push(answer._id)
-                        }
-                    }
-                })
-                boolArray.push(arrayright);
-            })
-
-            quiz = new Quiz('quiz', boolArray);
-
-
-            if (quiz.checkAnswers()) {
-                document.getElementById('quiz-result').innerHTML = "Du hast " + quiz.result.score.toString() + " von " + quiz.result.totalQuestions.toString() + " Frage(n) richtig beantwortet."
-
-                quiz.highlightResults(handleAnswers);
-            }
-        };
-        /** Callback for Quiz.highlightResults. Highlights the correct answers of incorrectly answered questions */
-        function handleAnswers(question, no, correct) {
-            if (!correct) {
-                var answers = question.getElementsByTagName('input');
-                for (var i = 0; i < answers.length; i++) {
-                    switch (answers[i].type) {
-                        case "checkbox":
-                        case "radio":
-                            if (quiz.answers[no].indexOf(answers[i].value) > -1) {
-                                answers[i].parentNode.classList.add(quiz.Classes.CORRECT);
-                            }
-                            break;
-                        default:
-                            var correctAnswer = document.createElement('span');
-                            correctAnswer.classList.add(quiz.Classes.CORRECT);
-                            correctAnswer.classList.add(quiz.Classes.TEMP);
-                            correctAnswer.innerHTML = quiz.answers[no];
-                            correctAnswer.style.marginLeft = '10px';
-                            answers[i].parentNode.insertBefore(correctAnswer, answers[i].nextSibling);
-                    }
-                }
-            }
+            QuizLogic.checkAnswers($scope.questions, $scope.answers);
         }
+
     })
     .config(function($routeProvider) {
         $routeProvider

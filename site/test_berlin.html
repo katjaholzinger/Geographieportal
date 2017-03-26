@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="de" ng-app="berlinTest">
+<html lang="de" ng-app="QuizApp">
 
 <head>
     <meta charset="utf-8" />
@@ -18,9 +18,11 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-sanitize/1.5.6/angular-sanitize.min.js"></script>
     <script language="javascript" type="text/javascript" src="../script/menu.js"></script>
     <script src="../quizlib/quizlib.js"></script>
-    <script src="../script/berlinTestApp.js"></script>
+    <script src="../script/services.js"></script>
+    <script src="../script/QuizApp.js"></script>
 
 </head>
 
@@ -93,7 +95,7 @@
                     <!-- Questions load per Angular -->
                     <div class="question quizlib-question" ng-repeat="question in questions">
                         <div class="w3-row">
-                            <div class="quizlib-question-title w3-col s11">{{question.text}} </div>
+                            <div class="quizlib-question-title w3-col s11" ng-bind-html="question.text">{{question.text}} </div>
                             <div class="w3-col s1 w3-right-align">
                                 <button ng-click="editQuestion(question._id)" class="squaredFaButton" href="#/edit"><i class="fa fa-pencil"></i></button>
                                 <button ng-click="deleteQuestion(question._id)" class="squaredFaButton"><i class="fa fa-times"></i></button>
