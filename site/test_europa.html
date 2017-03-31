@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/menu.css">
     <link rel="stylesheet" href="../style/quiz.css">
+    <link rel="stylesheet" href="../style/map.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 
@@ -46,13 +47,12 @@
                         <a href="wissen_berlin.html">
                             <li>Berliner Stadtentwicklung</li>
                         </a>
-                        <a href="#">
+                        <a href="all_wissen.html">
                             <li class="all">Alle Kategorien anzeigen</li>
                         </a>
                     </ul>
                 </li>
                 <li onclick="MenuClick(this)" class="subnavigation active"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Tests</a>
-
                     <ul>
                         <h3>Test Kategorien</h3>
                         <a href="test_deutschland.html">
@@ -64,7 +64,7 @@
                         <a href="test_berlin.html">
                             <li>Berliner Stadtentwicklung</li>
                         </a>
-                        <a href="#">
+                        <a href="all_tests.html">
                             <li class="all">Alle Kategorien anzeigen</li>
                         </a>
                     </ul>
@@ -82,17 +82,19 @@
         </p>
         <div class="w3-row">
             <div class="w3-col l3">
-                <div id="quiz" class="quiz quiz-left">
+                <div id="quiz" class="borderd borderd-left">
                     <div id="quizResult" class="card">
                         Fragen
                     </div>
-                    <p>Klicken sie auf den Marker an der Stelle der gesuchten Stadt. Die aktuelle Stadt die gesucht wird ist: </p>
-                    <center><b><p id="activeCity"></p> <p>Versuche: <span id="trial">0</span></p> </b></center>
+                    <p>Klicken sie auf den Marker an der Stelle der gesuchten Stadt. </p>
                     <p id="informativ"></p>
+                    <p> Die aktuelle Stadt die gesucht wird ist:</p>
+                    <center><b><p id="activeCity"></p> <p>Versuche: <span id="trial">0</span></p> </b></center>
+
                 </div>
             </div>
             <div class="w3-col l9">
-                <div id="map" class="quiz quiz-right map"></div>
+                <div id="map" class="borderd borderd quiz-right map"></div>
             </div>
         </div>
         <script language="javascript" type="text/javascript" src="../script/mapQuiz.js"></script>

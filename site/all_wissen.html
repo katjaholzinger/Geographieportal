@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="de" np-app>
+<html lang="de">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Index - Geographieportal</title>
+    <title>Wissen Deutschland - Geographiportal</title>
 
     <link rel="shortcut icon" href="../image/favicon.ico">
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
@@ -28,8 +28,8 @@
         <div id="menu" class="">
             <ul class="topnav" id="myTopnav">
 
-                <li class="active"><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Startseite</a></li>
-                <li onclick="MenuClick(this)" class="subnavigation"><a href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Wissen</a>
+                <li><a href="index.html"><i class="fa fa-home" aria-hidden="true"></i> Startseite</a></li>
+                <li onclick="MenuClick(this)" class="subnavigation active"><a href="#"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Wissen</a>
                     <ul>
                         <h3>Wissens Kategorien</h3>
                         <a href="wissen_deutschland.html">
@@ -69,28 +69,33 @@
 
         </div>
     </div>
-    <div id="content" class="">
+    <div id="content">
 
         <!--Inhalt-->
-        <H2>Einleitung</H2>
-        <p>Dieses Webprojekt dient der Aneignung von Wissen im Bereich Geographie.</p>
-        <p>Dabei wird auf die Themen der Berliner Stadtentwicklung, deutsche und europäische Topografie eingegangen. Es wurde kein Wert auf die Vollständige Wissensvermittlung innerhalb der Themen gelegt. Dieses Projekt dient lediglich als Einstieg in das
-            Thema.
-        </p>
-        <!--Bild einfügen-->
-        <img src="../image/dolomiten.jpg" class="img-fluid borderd"></img>
+        <H2>Übersicht Wissenseiten
+        </H2>
+        <div class="responsive-content">
+            <article class="post">
+                <a href="wissen_berlin.html"><img src="../image/berlin.jpg" class="img-fluid borderd hover"></img>
+                </a>
+            </article>
 
-        <p>Erstellt wurde dieses Projekt von Katja Holzinger, unter Einbeziehung verschiedener Javascript Frameworks, für das Modul Webprogrammierung.
-        </p>
+            <article class="post">
+                <a href="wissen_deutschland.html"><img src="../image/germany.png" class="img-fluid borderd hover"></img>
+                </a>
+            </article>
 
-        <p>Da ich nicht gerne für die Tonne produziere, habe ich dieses Projekt gleich zum Lernen für das Modul Shell verwendet. Die Fragen findet man <a href="shell.html">hier</a>.
-        </p>
+            <article class="post">
+                <a href="test_shell.html"><img src="../image/shell.jpg" class="img-fluid borderd hover"></img>
+                </a>
+            </article>
 
-        <div>
+            <article class="post">
+                <a href="wissen_europa.html"><img src="../image/europakarte-hauptstaedte.png" class="img-fluid borderd hover"></img>
+                </a>
+            </article>
 
         </div>
-    </div>
-
 </body>
 
 </html>

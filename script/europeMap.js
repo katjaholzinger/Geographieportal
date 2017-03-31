@@ -16,7 +16,7 @@ jQuery.getJSON("../script/hauptstaedte.json", function(data) {
     hauptstaedte = data;
     // Select 10 Random Citys
     for (i = 0; i < hauptstaedte.length; i++) {
-        var marker = L.marker([data[i].koordinaten.x, data[i].koordinaten.y], { title: i }).addTo(map);
+        var marker = L.marker([data[i].koordinaten.x, data[i].koordinaten.y]).addTo(map);
         marker.bindPopup("<b>" + data[i].land + "</b><br>" + data[i].name)
     }
 

@@ -3,6 +3,7 @@ BODY {
     font-family: 'Noto Sans', sans-serif;
     margin: 0;
     border-bottom: 3px solid #2F4082;
+    height: 100%;
 }
 
 
@@ -37,11 +38,6 @@ img {
     margin: 30px 1em;
 }
 
-#map {
-    width: 100%;
-    height: 600px;
-}
-
 @media screen and (min-width:1360px) {
     #content {
         margin: 30px auto;
@@ -49,7 +45,7 @@ img {
     }
 }
 
-@media screen and (max-width:690px) {
+@media screen and (max-width:710px) {
     #footer {
         display: none;
     }
@@ -90,4 +86,111 @@ hr {
 .float-right {
     padding: 0.5em;
     float: right;
+}
+
+.w3-row {
+    margin: 0.5em 0;
+}
+
+div .borderd {
+    border: 3px #2F4082 solid;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.borderd p {
+    margin: 1em;
+}
+
+@media screen and (min-width:993px) {
+    .borderd-left {
+        margin-right: 10px;
+    }
+    .borderd-right {
+        margin-left: 10px;
+    }
+}
+
+.card {
+    width: auto;
+    background-color: #4898C6;
+    padding: 1em;
+    text-align: center;
+}
+
+.button-bottom {
+    border-top: 2px #4898C6 solid;
+    border-bottom: 2px #4898C6 solid;
+    margin-top: 1em;
+}
+
+.button-bottom:hover {
+    background-color: white;
+    border-top: 2px #2F4082 solid;
+    border-bottom: 2px #2F4082 solid;
+}
+
+
+/* Multicolumnstyle von: https://media.kulturbanause.de/blog/2014/03/responsive-pinterest-style.html */
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.responsive-content {
+    -webkit-column-count: 1;
+    -webkit-column-gap: 0;
+    -moz-column-count: 1;
+    -moz-column-gap: 0;
+    column-count: 1;
+    column-gap: 0;
+}
+
+.no-csscolumns .content {
+    max-width: 500px;
+}
+
+.post {
+    background: white;
+    display: inline-block;
+    -webkit-column-break-inside: avoid;
+    -moz-column-break-inside: avoid;
+    column-break-inside: avoid;
+}
+
+img.hover:hover {
+    border: 0px;
+}
+
+@media screen and (min-width:690px) {
+    .responsive-content {
+        -webkit-column-count: 1;
+        -moz-column-count: 1;
+        column-count: 1;
+    }
+}
+
+@media screen and (min-width:710px) {
+    .responsive-content {
+        -webkit-column-count: 2;
+        -moz-column-count: 2;
+        column-count: 2;
+    }
+}
+
+
+/* Counter 
+Der Counter wird nur verwendet um die Reihenfolge der Elemente zu visualisieren.
+ Mehr Infos zu CSS-Countern unter: http://blog.kulturbanause.de/2013/11/css-counter-zahlen-mit-css/*/
+
+body {
+    counter-reset: number;
+}
+
+.post {
+    position: relative;
+    margin-left: 1em;
+    margin-right: 1em;
 }

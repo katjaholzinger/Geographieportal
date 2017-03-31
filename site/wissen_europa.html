@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../style/style.css">
     <link rel="stylesheet" href="../style/menu.css">
+    <link rel="stylesheet" href="../style/map.css">
     <link rel="stylesheet" href="https://www.w3schools.com/lib/w3.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 
@@ -44,13 +45,12 @@
                         <a href="wissen_berlin.html">
                             <li>Berliner Stadtentwicklung</li>
                         </a>
-                        <a href="#">
+                        <a href="all_wissen.html">
                             <li class="all">Alle Kategorien anzeigen</li>
                         </a>
                     </ul>
                 </li>
                 <li onclick="MenuClick(this)" class="subnavigation"><a href="#"><i class="fa fa-cogs" aria-hidden="true"></i> Tests</a>
-
                     <ul>
                         <h3>Test Kategorien</h3>
                         <a href="test_deutschland.html">
@@ -62,7 +62,7 @@
                         <a href="test_berlin.html">
                             <li>Berliner Stadtentwicklung</li>
                         </a>
-                        <a href="#">
+                        <a href="all_tests.html">
                             <li class="all">Alle Kategorien anzeigen</li>
                         </a>
                     </ul>
@@ -77,15 +77,25 @@
 
         <!--Inhalt-->
         <h2>Wissen Europa</h2>
-        <p>Auf der folgenden Seite wirst du Informationen zu Europa und den Ländern Europas erhalten. Du kannst dein Wissen auf der Seite <a href="test_europa.html">Test Europa</a> überprüfen. Außerdem findest du weiterführende Links auf der Seite.</p>
-        <div class="w3-panel w3-border w3-light-grey w3-round-large">
-            <p>Insgesamt hat Europa eine Fläche von etwa 10,5 Millionen Quadratkilometern und ist damit nach Australien der zweitkleinste Kontinent. Der nördlichste Punkt des europäischen Festlands ist Kinnarodden auf der Nordkinnhalbinsel in Norwegen, der
-                südlichste ist die Punta de Tarifa in Spanien, der westlichste das Cabo da Roca in Portugal. Die Nord-Süd-Ausdehnung beträgt etwa 3800 km. In Ost-West-Richtung misst das europäische Festland etwa 6000 km, vom Uralgebirge in Russland bis
-                zur Atlantikküste Portugals.</p>
+        <div class="w3-row">
+            <div class="w3-col l4">
+                <div class="borderd borderd-left">
+                    <p> Auf der folgenden Seite wirst du Informationen zu Europa und den Ländern Europas erhalten. Du kannst dein Wissen auf der Seite <a href="test_europa.html">Test Europa</a> überprüfen. Außerdem findest du weiterführende Links auf der
+                        Seite.
+                    </p>
+                </div>
+            </div>
+            <div class="w3-col l8">
+                <div class=" borderd borderd-right">
+                    <p>Insgesamt hat Europa eine Fläche von etwa 10,5 Millionen Quadratkilometern und ist damit nach Australien der zweitkleinste Kontinent. Der nördlichste Punkt des europäischen Festlands ist Kinnarodden auf der Nordkinnhalbinsel in Norwegen,
+                        der südlichste ist die Punta de Tarifa in Spanien, der westlichste das Cabo da Roca in Portugal. Die Nord-Süd-Ausdehnung beträgt etwa 3800 km. In Ost-West-Richtung misst das europäische Festland etwa 6000 km, vom Uralgebirge in
+                        Russland bis zur Atlantikküste Portugals.</p>
+                </div>
+            </div>
         </div>
-        <div id="map" class="quiz quiz-right map"></div>
+        <div id="map" class="borderd map w3-row"></div>
     </div>
-    <script language="javascript" type="text/javascript" src="../script/europeMap.js"></script>
+    <script language="javascript " type="text/javascript " src="../script/europeMap.js "></script>
 </body>
 
 </html>
