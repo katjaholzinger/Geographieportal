@@ -41,24 +41,27 @@ var QuizService = angular.module('QuizService', [])
                 return url;
             };
         }
-        this.selectQuestions = function(allquestions) {
+
+        //Es kann eine zufälligie Auswahl aus den Daten gemacht werden, oder einfach die Datensätze sortieren, wenn n> Länge der Daten
+        this.selectRandom = function(data, n) {
             questions = [];
             var min = 0;
-            var max = allquestions.length;
-            if (max > 10) {
-                number = 10;
+            var max = data.length;
+            if (max > n) {
+                number = n;
             } else {
                 number = max;
             }
+            console.log(number);
 
-            // Select 10 Random Citys
+            // Select Random
             for (i = 0; i < number; i++) {
                 var x = Math.floor(Math.random() * (max - min)) + min;
-                if (allquestions[x] == undefined) {
+                if (data[x] == undefined) {
                     i--
                 } else {
-                    questions.push(allquestions[x]);
-                    delete allquestions[x];
+                    questions.push(data[x]);
+                    delete data[x];
                 }
             }
             return questions;

@@ -18,14 +18,14 @@ angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
         $http.get(url.questions)
             .success(function(data) {
                 //Select Questions
-                $scope.questions = QuizLogic.selectQuestions(data);
+                $scope.questions = QuizLogic.selectRandom(data, 10);
             })
             .error(function(data) {
                 console.log('Error: ' + data);
             });
         $http.get(url.answers)
             .success(function(data) {
-                $scope.answers = data;
+                $scope.answers = QuizLogic.selectRandom(data, 1000);
             })
             .error(function(data) {
                 console.log('Error: ' + data);
