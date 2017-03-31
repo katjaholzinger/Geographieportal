@@ -3,10 +3,10 @@ angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
 .controller('mainCtrl', function($scope, $http, $location, QuizLogic) {
 
         activeUrl = $location.absUrl().slice(($location.absUrl().search('site/') + 5));
-        if (activeUrl == "test_berlin.html") {
+        if (activeUrl == "test_berlin.html" || activeUrl == "test_berlin.html#/") {
             url = QuizLogic.url(0);
         } else {
-            if (activeUrl == "shell.html") {
+            if (activeUrl == "test_shell.html" || activeUrl == "test_shell.html#/") {
                 url = QuizLogic.url(2);
             } else {
                 url = QuizLogic.url(1);
@@ -35,10 +35,14 @@ angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
         $scope.createQuestion = function() {
             if ($scope.formData.newQuestion) {
 
-
                 $http.post(url.questionPost, $scope.formData.newQuestion)
                     .success(function(data) {
-                        $scope.questions = data;
+                        $scope.allquestions = data;
+                        angular.forEach($scope.allquestions, function(question) {
+                            if (question.text == $scope.formData.newQuestion.text) {
+                                $scope.questions.push(question);
+                            }
+                        })
                     })
                     .error(function(data) {
                         console.log('Error: ' + data);
@@ -53,7 +57,7 @@ angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
                                 answer.text = value.text;
                                 if (value.bool) { answer.bool = value.bool; } else { answer.bool = false; }
                                 answer.fragenId = newQuestionId;
-                                $http.post(url.answerPost, answer)
+                                $http.post(url.answer, answer)
                                     .success(function(data) {
                                         $scope.formData = {}; // clear the form so our user is ready to enter another
                                         $scope.formData.newAnswers = [{ id: 'a1' }, { id: 'a2' }];
@@ -76,44 +80,47 @@ angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
 
         // delete a Question
         $scope.deleteQuestion = function(id) {
-            $http.delete(url.questionDelete + id)
-                .success(function(data) {
-                    //Antworten raussuchen mit selber fragenID
-                    $scope.answers.forEach(function(answer) {
-                        if (answer.fragenId == id) {
-                            $http.delete(url.answerDelete + answer._id)
-                                .success(function(data) {
-                                    $scope.answers = data;
-                                })
-                                .error(function(data) {
-                                    console.log('Error: ' + data);
-                                });
-                        }
+            var bool = window.confirm("Wollen sie die Frage endgültig löschen?")
+            if (bool) {
+                $http.delete(url.questionDelete + id)
+                    .success(function(data) {
+                        //Antworten raussuchen mit selber fragenID
+                        $scope.answers.forEach(function(answer) {
+                            if (answer.fragenId == id) {
+                                $http.delete(url.answerDelete + answer._id)
+                                    .success(function(data) {
+                                        $scope.answers = data;
+                                    })
+                                    .error(function(data) {
+                                        console.log('Error: ' + data);
+                                    });
+                            }
+                        })
+                        $scope.questions = data;
                     })
-                    $scope.questions = data;
-                })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                });
-        };
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+            };
 
-        // delete a Answer
-        $scope.deleteAnswer = function(id) {
-            $http.delete(url.answerDelete + id)
-                .success(function(data) {
-                    $scope.answers = data;
+            // delete a Answer
+            $scope.deleteAnswer = function(id) {
+                $http.delete(url.answerDelete + id)
+                    .success(function(data) {
+                        $scope.answers = data;
+                    })
+                    .error(function(data) {
+                        console.log('Error: ' + data);
+                    });
+                var i = 0;
+                $scope.AnswersEdit.forEach(function(answer) {
+                    if (answer._id == id) {
+                        delete $scope.AnswersEdit[i];
+                    } else {
+                        i++;
+                    }
                 })
-                .error(function(data) {
-                    console.log('Error: ' + data);
-                });
-            var i = 0;
-            $scope.AnswersEdit.forEach(function(answer) {
-                if (answer._id == id) {
-                    delete $scope.AnswersEdit[i];
-                } else {
-                    i++;
-                }
-            })
+            }
         };
 
         // update a Question
@@ -131,7 +138,6 @@ angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
                                 console.log('Error: ' + data);
                             });
                     })
-                    $scope.questions = data;
                 })
                 .error(function(data) {
                     console.log('Error: ' + data);

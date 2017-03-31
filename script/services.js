@@ -45,8 +45,8 @@ var QuizService = angular.module('QuizService', [])
             questions = [];
             var min = 0;
             var max = allquestions.length;
-            if (max > 7) {
-                number = 7;
+            if (max > 10) {
+                number = 10;
             } else {
                 number = max;
             }
