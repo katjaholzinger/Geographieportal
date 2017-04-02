@@ -130,6 +130,17 @@ div .borderd {
     border-bottom: 2px #2F4082 solid;
 }
 
+.zweispaltig {
+    column-count: 2;
+    column-gap: 2em;
+}
+
+@media screen and (max-width:689px) {
+    .zweispaltig {
+        column-count: 1;
+    }
+}
+
 
 /* Multicolumnstyle von: https://media.kulturbanause.de/blog/2014/03/responsive-pinterest-style.html */
 

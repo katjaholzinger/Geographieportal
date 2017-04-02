@@ -1,11 +1,11 @@
 // server.js
 // set up ========================
 var express = require('express');
-var app = express(); // create our app w/ express
-var mongoose = require('mongoose'); // mongoose for mongodb
-var morgan = require('morgan'); // log requests to the console (express4)
-var bodyParser = require('body-parser'); // pull information from HTML POST (express4)
-var methodOverride = require('method-override'); // simulate DELETE and PUT (express4)
+var app = express();
+var mongoose = require('mongoose');
+var morgan = require('morgan');
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 // configuration =================
 
@@ -18,7 +18,7 @@ app.use(bodyParser.json()); // parse application/json
 app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 app.use(methodOverride());
 
-// define model =================
+// define Databasemodel =================
 var Question = mongoose.model('Question', {
     text: String
 });
@@ -48,7 +48,7 @@ var ShellAnswer = mongoose.model('ShellAnswer', {
 
 // listen (start app with node server.js) ======================================
 app.listen(8765);
-console.log("App listening on port 8765");
+console.log("Die Webseite ist erreichbar unter localhost:8765/site");
 
 // routes ======================================================================
 
@@ -56,7 +56,7 @@ console.log("App listening on port 8765");
 // get all Questions
 app.get('/api/questions', function(req, res) {
 
-    // get and return all the questions after you create another
+    // get and return all questions 
     Question.find(function(err, questions) {
         if (err)
             res.send(err)
@@ -67,7 +67,6 @@ app.get('/api/questions', function(req, res) {
 // get Question by Text
 app.get('/api/question/:text', function(req, res) {
 
-    // get and return all the questions after you create another
     Question.findOne({ text: req.params.text }, function(err, questions) {
         if (err)
             res.send(err)
@@ -78,7 +77,7 @@ app.get('/api/question/:text', function(req, res) {
 // create question and send back all questions after creation
 app.post('/api/question', function(req, res) {
 
-    // create a question, information comes from AJAX request from Angular
+    // create a question
     Question.create({
         text: req.body.text
     }, function(err, question) {
@@ -128,7 +127,6 @@ app.get('/api/answers', function(req, res) {
 app.post('/api/answer', function(req, res) {
     // create a answer, information comes from AJAX request from Angular
     Answer.create({
-        //boolean und FragenIDmuss extraiert werden aus dem Body
         text: req.body.text,
         fragenId: req.body.fragenId,
         bool: req.body.bool

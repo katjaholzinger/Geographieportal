@@ -1,0 +1,26 @@
+﻿Einbindung von w3css für das Column Layout:
+https://www.w3schools.com/w3css/
+
+Einbindung von FontAwsome:
+http://fontawesome.io/
+
+Einbindung von AngularJs mit diversen Modulen in Version 1.5.6:
+https://angularjs.org/
+
+Einbindung Quiz-Framework: Quizlib
+https://alpsquid.github.io/quizlib/.html
+
+Einbindung Leaflet.js für Topographie Quiz und für Kartendarstellungen:
+http://leafletjs.com/
+
+Farbpalette:
+- schwarz: #1E122B
+- dunkel blau: #2F4082
+- mittel blau: #4898C6
+- hell blau: #A6D9E5
+- weiß: #FFFFFF
+
+
+
+
+

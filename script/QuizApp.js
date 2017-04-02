@@ -31,10 +31,11 @@ angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
                 console.log('Error: ' + data);
             });
 
-        // when submitting the add form, send the text to the node API
+        // when submitting the add form, send Question to the node API
         $scope.createQuestion = function() {
-            if ($scope.formData.newQuestion) {
-
+            console.log($scope.formData.newAnswers[0].text);
+            if ($scope.formData.newQuestion && $scope.formData.newAnswers[0].text != null) {
+                var erfolgreich = false;
                 $http.post(url.questionPost, $scope.formData.newQuestion)
                     .success(function(data) {
                         $scope.allquestions = data;
@@ -43,37 +44,38 @@ angular.module('QuizApp', ['ngRoute', 'QuizService', 'ngSanitize'])
                                 $scope.questions.push(question);
                             }
                         })
+                        var newQuestionId = "";
+                        $http.get(url.questionGet + encodeURIComponent($scope.formData.newQuestion.text))
+                            .success(function(data) {
+                                var newQuestionId = data._id;
+                                angular.forEach($scope.formData.newAnswers, function(value) {
+                                    if (value.text) {
+                                        var answer = new Object;
+                                        answer.text = value.text;
+                                        if (value.bool) { answer.bool = value.bool; } else { answer.bool = false; }
+                                        answer.fragenId = newQuestionId;
+                                        $http.post(url.answer, answer)
+                                            .success(function(data) {
+                                                $scope.formData = {}; // clear the form
+                                                $scope.formData.newAnswers = [{ id: 'a1' }, { id: 'a2' }];
+                                                $scope.answers = data;
+                                            })
+                                            .error(function(data) {
+                                                console.log('Error: ' + data);
+                                            });
+                                    }
+                                })
+                            })
+                            .error(function(data) {
+                                console.log('Error: ' + data);
+                            });
                     })
                     .error(function(data) {
                         console.log('Error: ' + data);
                     });
-                var newQuestionId = "";
-                $http.get(url.questionGet + encodeURIComponent($scope.formData.newQuestion.text))
-                    .success(function(data) {
-                        var newQuestionId = data._id;
-                        angular.forEach($scope.formData.newAnswers, function(value) {
-                            if (value.text) {
-                                var answer = new Object;
-                                answer.text = value.text;
-                                if (value.bool) { answer.bool = value.bool; } else { answer.bool = false; }
-                                answer.fragenId = newQuestionId;
-                                $http.post(url.answer, answer)
-                                    .success(function(data) {
-                                        $scope.formData = {}; // clear the form so our user is ready to enter another
-                                        $scope.formData.newAnswers = [{ id: 'a1' }, { id: 'a2' }];
-                                        $scope.answers = data;
-                                    })
-                                    .error(function(data) {
-                                        console.log('Error: ' + data);
-                                    });
-                            }
-                        });
-                    })
-                    .error(function(data) {
-                        console.log('Error: ' + data);
-                    });
+
             } else {
-                alert("Bitte geben sie eine Frage ein.");
+                alert("Bitte geben sie eine Frage mit Antworten ein.");
             }
 
         };

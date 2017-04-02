@@ -52,7 +52,6 @@ var QuizService = angular.module('QuizService', [])
             } else {
                 number = max;
             }
-            console.log(number);
 
             // Select Random
             for (i = 0; i < number; i++) {
